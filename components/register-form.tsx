@@ -8,13 +8,13 @@ import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import { create } from "@/app/(auth)/action";
 import { toast } from "sonner";
-import { redirect } from "next/navigation";
 import { Loader2 } from "lucide-react";
-
+import { useRouter } from "next/navigation";
 export function RegisterForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -37,7 +37,8 @@ export function RegisterForm({
       }
 
       toast.success("Usuário criado com sucesso!");
-      redirect("/login");
+
+      router.push("/login");
     } catch (error) {
       console.error(error);
       toast.error("Erro ao criar usuário");
