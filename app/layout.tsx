@@ -3,8 +3,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import AppSidebar from "@/components/app-sidebar";
-import { SessionProvider } from "next-auth/react";
 
+import Providers from "@/providers";
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
@@ -22,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <SessionProvider>
+    <Providers>
       <html lang="pt-BR">
         <body className={`${inter.variable}`}>
           <div className="flex w-full h-full">
@@ -34,6 +34,6 @@ export default function RootLayout({
           <Toaster />
         </body>
       </html>
-    </SessionProvider>
+    </Providers>
   );
 }
