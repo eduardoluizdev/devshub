@@ -6,8 +6,9 @@
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
     "prisma:studio": "prisma studio",
+    "prisma:deploy": "prisma migrate deploy",
     "dev": "next dev --turbopack",
-    "build": "prisma migrate deploy && prisma generate && next build",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
