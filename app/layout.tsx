@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
+import AppSidebar from "@/components/app-sidebar";
+import { SessionProvider } from "next-auth/react";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -20,11 +22,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR">
-      <body className={`${inter.variable}`}>
-        {children}
-        <Toaster />
-      </body>
-    </html>
+    <SessionProvider>
+      <html lang="pt-BR">
+        <body className={`${inter.variable}`}>
+          <div className="flex w-full h-full">
+            <AppSidebar />
+            <div className="flex flex-col flex-1 w-full h-[calc(100vh-1rem)] px-4 py-2">
+              {children}
+            </div>
+          </div>
+          <Toaster />
+        </body>
+      </html>
+    </SessionProvider>
   );
 }
